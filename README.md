@@ -2,7 +2,13 @@
 
 This example project is intended to aid debugging a peculiar bug with Redshift.
 
-## Build and Run
+It runs 3 queries against Redshift given some connection settings.
+All queries should produce the same results (a truncation of the current date). However, the latter two fail
+and return `2000-01-01`.
+The only difference between the queries is how a null value is passed to the `PreparedStatement`, all should be valid.
+
+
+## Build and Run - Local Java
 ```
 redshift-debug $  mvn clean package
 [INFO] Scanning for projects...
@@ -30,6 +36,17 @@ Done!
 redshift-debug $ 
 ```
 
-All queries should produce the same results (a truncation of the current date). However, the latter two fail
-and return `2000-01-01`.
-The only difference between the queries is how a null value is passed to the `PreparedStatement`, all should be valid.
+## Build and Run - Docker
+```
+redshift-debug $ docker build -t redshift-example .
+  ...
+redshift-debug $ docker run redshift-example "jdbc:redshift://<DB_CONNECTION_STRING>" "<USER>" "<PASSWORD>"
+Attempting working query
+2024-11-05
+Attempting broken query
+2000-01-01
+Attempting another broken query
+2000-01-01
+Done!
+redshift-debug $ 
+```
