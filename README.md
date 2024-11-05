@@ -4,7 +4,7 @@ This example project is intended to aid debugging a peculiar bug with Redshift.
 
 ## Build and Run
 ```
-$ mvn clean package
+redshift-debug $  mvn clean package
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] ----------------< com.example.redshift:redshift-debug >-----------------
@@ -19,7 +19,7 @@ $ mvn clean package
 [INFO] Total time:  0.959 s
 [INFO] Finished at: 2024-11-05T13:08:00Z
 [INFO] ------------------------------------------------------------------------
-$ java -cp target/redshift-debug-1.0-SNAPSHOT.jar com.example.redshift.App "jdbc:redshift://<DB_CONNECTION_STRING>" "<USER>" "<PASSWORD>"
+redshift-debug $  java -cp target/redshift-debug-1.0-SNAPSHOT.jar com.example.redshift.App "jdbc:redshift://<DB_CONNECTION_STRING>" "<USER>" "<PASSWORD>"
 Attempting working query
 2024-11-05
 Attempting broken query
@@ -27,7 +27,7 @@ Attempting broken query
 Attempting another broken query
 2000-01-01
 Done!
-~/C/r/redshift-debug $ 
+redshift-debug $ 
 ```
 
 All queries should produce the same results (a truncation of the current date). However, the latter two fail
